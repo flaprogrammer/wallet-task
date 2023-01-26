@@ -4,6 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### `npm test`
 
-<img src="https://lenarfattakhov.com/assets/wallets-task/sc1.png" width="350" title="screenshot one">
-<img src="https://lenarfattakhov.com/assets/wallets-task/sc2.png" width="350" title="screenshot two">
+## Screenshots:
+
+<table border="0">
+ <tr>
+    <td><img src="https://lenarfattakhov.com/assets/wallets-task/sc1.png" width="350" title="screenshot one"><td>
+    <td><img src="https://lenarfattakhov.com/assets/wallets-task/sc2.png" width="350" title="screenshot two"></td>
+ </tr>
+</table>
 <img src="https://lenarfattakhov.com/assets/wallets-task/sc3.png" width="600" title="screenshot three">
