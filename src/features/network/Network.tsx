@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { connectToWeb3, fetchWallets } from 'pages/wallets';
 import { Button } from 'shared/button';
+import { networksList } from './config';
 import styles from './Network.module.css';
 
 export function Network() {
@@ -13,7 +14,7 @@ export function Network() {
   return (
     <div className={styles.network}>
       <Formik
-        initialValues={{ network: 'https://sepolia.infura.io/v3/d966b478f36c47d9a6b9ba35d7326d2b' }}
+        initialValues={{ network: networksList[0].value }}
         onSubmit={async values => {
           dispatch(connectToWeb3(values.network));
           dispatch(fetchWallets());
@@ -21,15 +22,11 @@ export function Network() {
       >
         <Form>
           <Field as="select" name="network">
-            <option value="https://sepolia.infura.io/v3/d966b478f36c47d9a6b9ba35d7326d2b">
-              ETH Sepolia
-            </option>
-            <option value="https://mainnet.infura.io/v3/d966b478f36c47d9a6b9ba35d7326d2b">
-              ETH Mainnet
-            </option>
-            <option value="https://goerli.infura.io/v3/d966b478f36c47d9a6b9ba35d7326d2b">
-              ETH Goerli
-            </option>
+            {networksList.map(network => (
+              <option key={network.value} value={network.value}>
+                {network.label}
+              </option>
+            ))}
           </Field>
           <Button label={intl.formatMessage({ id: 'network.connect' })} type="submit" />
         </Form>

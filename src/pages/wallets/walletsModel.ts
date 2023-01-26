@@ -35,7 +35,6 @@ const initialState: WalletsModelState = {
 export const walletsModel = createSlice({
   name: 'elements',
   initialState: initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setNetwork: (state, action: PayloadAction<string | null>) => {
       state.network = action.payload;

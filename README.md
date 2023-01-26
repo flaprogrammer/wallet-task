@@ -12,13 +12,16 @@ In this project I tried to show my skills and experience, although not so many t
 - Working with web3.js library
 - prettierrc and editorconfig files to make everything consistent
 - I18n using react-intl
+- Reselect library for memoized selectors
 - Showing error messages using react-toastify
 - Unit tests
 
 What else could be done
 
-- Responsive design
--
+- Responsive and better design
+- Using websocket providers to update balance in real-time
+- Showing preloaders when loading data
+- 
 
 ## Screenshots:
 
