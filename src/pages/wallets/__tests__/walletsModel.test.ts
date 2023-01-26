@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import storejs from 'store';
 import {
   WALLET_KEY,
   web3,
@@ -96,14 +97,11 @@ describe('thunk actions', () => {
   });
 
   test('should fetchWallets', () => {
-    localStorage.setItem(
-      WALLET_KEY,
-      JSON.stringify([
-        {
-          address: '881e1a8218dc868f1f0caa17a6098dc8cffdc7d0',
-        },
-      ])
-    );
+    storejs.set(WALLET_KEY, [
+      {
+        address: '881e1a8218dc868f1f0caa17a6098dc8cffdc7d0',
+      },
+    ]);
     store.dispatch(fetchWallets());
     expect(store.getState().wallets.list).toEqual([
       {

@@ -1,8 +1,24 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+### Commands
 
-### `npm start`
+- `npm start`
+- `npm test`
 
-### `npm test`
+## Description
+
+In this project I tried to show my skills and experience, although not so many things can be done in a few days. Let me list what you can find here
+
+- React, Redux-toolkit, TypeScript, Hooks
+- Feature-sliced architecture (https://feature-sliced.design/)
+- Working with web3.js library
+- prettierrc and editorconfig files to make everything consistent
+- I18n using react-intl
+- Showing error messages using react-toastify
+- Unit tests
+
+What else could be done
+
+- Responsive design
+-
 
 ## Screenshots:
 

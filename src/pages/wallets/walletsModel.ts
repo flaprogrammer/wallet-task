@@ -1,9 +1,11 @@
 import type { ThunkAction } from '@reduxjs/toolkit';
 import { AnyAction, createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { RootState } from 'app/store';
 import Web3 from 'web3';
+import storejs from 'store';
 import type { EncryptedKeystoreV3Json } from 'web3-core/types';
+
+import { RootState } from 'app/store';
 import { authModel } from 'features/auth';
 import { getWalletsMapped } from './lib';
 
@@ -49,13 +51,7 @@ export const walletsModel = createSlice({
 
 export const fetchWallets = (): ThunkAction<void, RootState, unknown, AnyAction> => {
   return dispatch => {
-    const walletsString = localStorage.getItem(WALLET_KEY) || '';
-    let wallets: EncryptedKeystoreV3Json[];
-    try {
-      wallets = JSON.parse(walletsString);
-    } catch (e) {
-      wallets = [];
-    }
+    const wallets: EncryptedKeystoreV3Json[] = storejs.get(WALLET_KEY, []);
     wallets.forEach(wallet => {
       wallet.address = '0x' + wallet.address;
     });
