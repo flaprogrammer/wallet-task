@@ -15,7 +15,7 @@ export function Wallets() {
   return (
     <div>
       <div>
-        <img className={styles.header} src={headerImage} alt="header" />
+        <img className={styles.header} src={headerImage} alt="Header" />
       </div>
 
       <Network />

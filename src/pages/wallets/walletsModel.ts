@@ -3,25 +3,12 @@ import { AnyAction, createSlice, PayloadAction, createSelector } from '@reduxjs/
 import { toast } from 'react-toastify';
 import { RootState } from 'app/store';
 import Web3 from 'web3';
-import type { EncryptedKeystoreV3Json, WalletBase } from 'web3-core/types';
+import type { EncryptedKeystoreV3Json } from 'web3-core/types';
 import { authModel } from 'features/auth';
+import { getWalletsMapped } from './lib';
 
-const WALLET_KEY = 'web3js_wallet';
-let web3: Web3;
-
-const getWalletsMapped = (wallets: WalletBase) => {
-  const walletsMapped = [];
-  for (let i = 0; i <= wallets.length; i++) {
-    if (!wallets[i]) {
-      continue;
-    }
-    walletsMapped.push({
-      address: wallets[i].address.toLowerCase(),
-      privateKey: wallets[i].privateKey,
-    });
-  }
-  return walletsMapped;
-};
+export const WALLET_KEY = 'web3js_wallet';
+export let web3: Web3;
 
 interface Wallet {
   address: string;
@@ -62,7 +49,6 @@ export const walletsModel = createSlice({
 
 export const fetchWallets = (): ThunkAction<void, RootState, unknown, AnyAction> => {
   return dispatch => {
-    console.log(web3.eth.accounts.wallet);
     const walletsString = localStorage.getItem(WALLET_KEY) || '';
     let wallets: EncryptedKeystoreV3Json[];
     try {
@@ -95,7 +81,7 @@ export const decryptWallets = (
 ): ThunkAction<Boolean, RootState, unknown, AnyAction> => {
   return dispatch => {
     try {
-      const decrypted = web3.eth.accounts.wallet.load(password);
+      const decrypted = web3.eth.accounts.wallet.load(password, WALLET_KEY);
       const walletsMapped = getWalletsMapped(decrypted);
       dispatch(walletsModel.actions.setWallets(walletsMapped));
       return true;
@@ -109,9 +95,13 @@ export const decryptWallets = (
 export const createWallet = (): ThunkAction<void, RootState, unknown, AnyAction> => {
   return (dispatch, getState) => {
     const res = web3.eth.accounts.wallet.create(1);
+    if (!res) {
+      toast.error('Enable to create a wallet, try again');
+      return;
+    }
     const password = getState().auth.password;
     if (password) {
-      web3.eth.accounts.wallet.save(password);
+      web3.eth.accounts.wallet.save(password, WALLET_KEY);
       const walletsMapped = getWalletsMapped(web3.eth.accounts.wallet);
       dispatch(walletsModel.actions.setWallets(walletsMapped));
     }
@@ -121,10 +111,13 @@ export const createWallet = (): ThunkAction<void, RootState, unknown, AnyAction>
 export const removeWallet = (address: string): ThunkAction<void, RootState, unknown, AnyAction> => {
   return (dispatch, getState) => {
     const res = web3.eth.accounts.wallet.remove(address);
-    if (!res) return;
+    if (!res) {
+      toast.error('Enable to remove the wallet, try again');
+      return;
+    }
     const password = getState().auth.password;
     if (password) {
-      web3.eth.accounts.wallet.save(password);
+      web3.eth.accounts.wallet.save(password, WALLET_KEY);
       const walletsMapped = getWalletsMapped(web3.eth.accounts.wallet);
       dispatch(walletsModel.actions.setWallets(walletsMapped));
     }
@@ -140,7 +133,7 @@ export const connectToWeb3 = (
   };
 };
 
-export const {} = walletsModel.actions;
+export const { setNetwork, setWallets, setBalance } = walletsModel.actions;
 
 export const selectHasNetwork = (state: RootState) => !!state.wallets.network;
 

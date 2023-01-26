@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import { store } from 'app/store';
+import { Wallets } from '../Wallets';
 
 test('renders learn react link', () => {
-  const { getByText } = render(
+  const { getByText, getByRole } = render(
     <Provider store={store}>
-      <App />
+      <Wallets />
     </Provider>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  expect(getByRole('img')).toBeInTheDocument();
 });

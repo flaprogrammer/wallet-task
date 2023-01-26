@@ -30,7 +30,7 @@ export function Network() {
               ETH Goerli
             </option>
           </Field>
-          <Button label="Submit" type="submit" />
+          <Button label="Connect" type="submit" />
         </Form>
       </Formik>
     </div>
