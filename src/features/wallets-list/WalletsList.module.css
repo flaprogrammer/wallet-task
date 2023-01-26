@@ -1,0 +1,11 @@
+.table {
+  margin: 20px auto;
+  color: #333;
+}
+.table td {
+  padding: 10px;
+}
+
+table tr:nth-child(2n) {
+  background-color: #eee;
+}
