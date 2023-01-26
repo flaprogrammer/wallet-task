@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import Web3 from 'web3';
+import { useIntl, FormattedMessage } from 'react-intl';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectList, removeWallet, selectHasNetwork } from 'pages/wallets';
@@ -9,25 +8,39 @@ import styles from './WalletsList.module.css';
 
 export function WalletsList() {
   const dispatch = useAppDispatch();
+  const intl = useIntl();
   const walletsList = useAppSelector(selectList);
   const didAuth = useAppSelector(selectDidAuth);
   const hasNetwork = useAppSelector(selectHasNetwork);
 
   if (!hasNetwork) return null;
 
-  if (!walletsList.length) return <div>List is empty</div>;
+  if (!walletsList.length)
+    return (
+      <div>
+        <FormattedMessage id="walletList.listIsEmpty" />
+      </div>
+    );
 
   return (
     <div>
       <table className={styles.table} cellSpacing="0">
         <thead>
           <tr>
-            <th>Address</th>
-            <th>Balance</th>
+            <th>
+              <FormattedMessage id="walletList.address" />
+            </th>
+            <th>
+              <FormattedMessage id="walletList.balance" />
+            </th>
             {didAuth && (
               <>
-                <th>Private Key</th>
-                <th>Remove</th>
+                <th>
+                  <FormattedMessage id="walletList.privateKey" />
+                </th>
+                <th>
+                  <FormattedMessage id="walletList.remove" />
+                </th>
               </>
             )}
           </tr>
@@ -41,7 +54,10 @@ export function WalletsList() {
                 <>
                   <td>{wallet.privateKey}</td>
                   <td>
-                    <Button label="Remove" onClick={() => dispatch(removeWallet(wallet.address))} />
+                    <Button
+                      label={intl.formatMessage({ id: 'walletList.remove' })}
+                      onClick={() => dispatch(removeWallet(wallet.address))}
+                    />
                   </td>
                 </>
               )}

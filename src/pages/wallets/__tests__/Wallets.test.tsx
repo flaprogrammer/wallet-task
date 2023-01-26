@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from 'app/store';
 import { Wallets } from '../Wallets';
 
-test('renders learn react link', () => {
+test('renders header img', () => {
   const { getByText, getByRole } = render(
     <Provider store={store}>
       <Wallets />
@@ -13,3 +13,24 @@ test('renders learn react link', () => {
 
   expect(getByRole('img')).toBeInTheDocument();
 });
+
+test('renders Connect button', () => {
+  const { getByText, getByRole } = render(
+    <Provider store={store}>
+      <Wallets />
+    </Provider>
+  );
+
+  expect(getByText('Connect')).toBeInTheDocument();
+});
+
+test('displays empty list', () => {
+  const { getByText, getByRole } = render(
+    <Provider store={store}>
+      <Wallets />
+    </Provider>
+  );
+
+  expect(getByText('Connect')).toBeInTheDocument();
+});
+

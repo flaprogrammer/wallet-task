@@ -1,0 +1,11 @@
+{
+  "auth.enterPassword": "Enter Password",
+  "auth.submit": "Submit",
+  "network.connect": "Connect",
+  "walletList.address": "Address",
+  "walletList.balance": "Balance",
+  "walletList.listIsEmpty": "List is empty",
+  "walletList.privateKey": "Private Key",
+  "walletList.remove": "Remove",
+  "walletsNew.create": "Create a new account"
+}

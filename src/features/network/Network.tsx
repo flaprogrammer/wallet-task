@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Formik, Field, Form } from 'formik';
-
+import { useIntl } from 'react-intl';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { connectToWeb3, fetchWallets } from 'pages/wallets';
 import { Button } from 'shared/button';
@@ -8,6 +8,7 @@ import styles from './Network.module.css';
 
 export function Network() {
   const dispatch = useAppDispatch();
+  const intl = useIntl();
 
   return (
     <div className={styles.network}>
@@ -30,7 +31,7 @@ export function Network() {
               ETH Goerli
             </option>
           </Field>
-          <Button label="Connect" type="submit" />
+          <Button label={intl.formatMessage({ id: 'network.connect' })} type="submit" />
         </Form>
       </Formik>
     </div>
