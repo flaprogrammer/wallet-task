@@ -1,5 +1,3 @@
-import type { Account } from 'web3-core/types';
-
 type Wallets = {
   length: number;
   [key: number]: {

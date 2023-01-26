@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import { useIntl } from 'react-intl';
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { useAppDispatch } from 'app/hooks';
 import { connectToWeb3, fetchWallets } from 'pages/wallets';
 import { Button } from 'shared/button';
 import { networksList } from './config';
