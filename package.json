@@ -28,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress": "npx cypress run --record --key 0c7069ce-a758-4090-aceb-41c70e520238",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

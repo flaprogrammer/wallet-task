@@ -20,14 +20,18 @@ export function Network() {
         }}
       >
         <Form>
-          <Field as="select" name="network">
+          <Field as="select" name="network" data-testid="network-select">
             {networksList.map(network => (
               <option key={network.value} value={network.value}>
                 {network.label}
               </option>
             ))}
           </Field>
-          <Button label={intl.formatMessage({ id: 'network.connect' })} type="submit" />
+          <Button
+            label={intl.formatMessage({ id: 'network.connect' })}
+            type="submit"
+            data-testid="network-connect"
+          />
         </Form>
       </Formik>
     </div>

@@ -26,8 +26,13 @@ export function Auth() {
           }}
         >
           <Form>
-            <FormattedMessage id="auth.enterPassword" /> <Field name="password" type="text" />
-            <Button label={intl.formatMessage({ id: 'auth.submit' })} type="submit" />
+            <FormattedMessage id="auth.enterPassword" />{' '}
+            <Field name="password" type="text" data-testid="auth-password" />
+            <Button
+              label={intl.formatMessage({ id: 'auth.submit' })}
+              type="submit"
+              data-testid="auth-submit"
+            />
           </Form>
         </Formik>
       </div>
@@ -37,6 +42,7 @@ export function Auth() {
       <Button
         label={intl.formatMessage({ id: 'auth.enterPassword' })}
         onClick={() => setShowForm(true)}
+        data-testid="auth-enter-password"
       />
     );
 }

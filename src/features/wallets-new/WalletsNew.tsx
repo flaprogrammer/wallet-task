@@ -17,6 +17,7 @@ export function WalletsNew() {
       <Button
         label={intl.formatMessage({ id: 'walletsNew.create' })}
         onClick={() => dispatch(createWallet())}
+        data-testid="new-button"
       />
     </div>
   );

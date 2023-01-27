@@ -24,7 +24,7 @@ export function WalletsList() {
 
   return (
     <div>
-      <table className={styles.table} cellSpacing="0">
+      <table className={styles.table} cellSpacing="0" data-testid="wallets-table">
         <thead>
           <tr>
             <th>
@@ -57,6 +57,7 @@ export function WalletsList() {
                     <Button
                       label={intl.formatMessage({ id: 'walletList.remove' })}
                       onClick={() => dispatch(removeWallet(wallet.address))}
+                      data-testid="wallets-remove"
                     />
                   </td>
                 </>

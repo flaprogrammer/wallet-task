@@ -9,7 +9,7 @@ export function Wallets() {
   return (
     <div>
       <div>
-        <img className={styles.header} src={headerImage} alt="Header" />
+        <img className={styles.header} src={headerImage} alt="Header" data-testid="header" />
       </div>
 
       <Network />
