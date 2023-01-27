@@ -1,3 +1,5 @@
+Project is available on https://lenarfattakhov.com/wallet-task
+
 ### Commands
 
 - `npm start`
